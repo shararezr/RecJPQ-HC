@@ -1,8 +1,11 @@
 # RecJPQ-HC
 
-**Memory-efficient sequential recommendation with Joint Product Quantization (JPQ) and pluggable centroid-assignment strategies.**
+**Higher Capacity Transfer into JPQ Item Codes for Scalable
+Sequential Recommendation.**
 
-RecJPQ-HC implements and compares *Joint Product Quantization* for the item-embedding tables of two popular sequential recommenders — **SASRec / gSASRec** and **BERT4Rec** — and studies how the choice of **centroid-assignment strategy** (SVD, BPR, random, Quotient–Remainder, SVD+OPQ) affects accuracy, embedding-table size, code utilization and the effective rank of the learned representation.
+Although transformer models have improved the effectiveness of sequential recommendation, their computational and memory costs make it challenging to scale to item catalogues containing millions of items. To address this limitation, RecJPQ, a recommendation method based on joint product quantisation, represents each item using compact discrete codes rather than large embedding tables, substantially reducing training memory requirements. These codes are typically initialised from a memory-efficient bootstrap representation, such as truncated SVD, before being quantised. However, because quantisation is inherently lossy, the quality of the resulting code assignments depends on how effectively information from the bootstrap representation space is transferred to the quantised item space, a problem we term capacity transfer. To address this issue, we initialise JPQ item codes using a higher-dimensional bootstrap representation that is subsequently compressed via product quantisation prior to training; we refer to this method as RecJPQ- HC (Higher Capacity). Experimental results show that RecJPQ-HC consistently improves downstream recommendation performance over the original RecJPQ code assignment strategy. Across multiple
+datasets and sequential recommendation models, it achieves statistically significant average relative improvements of approximately
+30% in NDCG@10 while preserving memory efficiency
 
 The repository is organised as two self-contained experiment suites that share the same JPQ layer and the same centroid-assignment code:
 
